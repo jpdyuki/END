@@ -5,7 +5,7 @@ SITE_ADDR = { "jisho": "http://jisho.org/search?utf8=✓&keyword=",
               "weblio-ruigo": "http://thesaurus.weblio.jp/content/"
             };
 
-SITE_USED_INIT = { "jisho": true,
+SITE_USED_INIT = { "jisho": false,
                    "weblio": true,
                    "hujiang": true,
                    "goojisho": true,
