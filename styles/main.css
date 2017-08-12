@@ -1,0 +1,243 @@
+::-webkit-scrollbar{
+    width: 12px;
+}
+
+::-webkit-scrollbar-track{ 
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(29, 161, 242, 1);
+}
+
+.h-100{
+    min-height: 100%;
+    height: 100%;
+}
+
+.force-ver-40{
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.protected{
+    opacity: 0;
+}
+
+.protected.active{
+    opacity: 1;
+}
+
+.gu-transit{
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+}
+
+body{
+    font-size: 16px;
+    font-family: Arial, Meiryo, "MS PGothic", "MS Gothic", sans-serif;
+    height: 100%;
+    min-height: 400px;
+}
+
+iframe{
+    border: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#cp-drag{
+    display: none;
+}
+
+#search-bar{
+    position: relative;
+    top: 30%;
+    padding: 40px 60px 25px 60px;
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#search-bar.pinned{
+    top: 0%;
+}
+
+#search-input:focus{
+    border-color: #e966bf;
+    outline: 0;
+    -webkit-box-shadow: inset 0 2px 2px rgba(0,0,0,.075), 0 0 8px rgba(233, 102, 191, 0.6);
+    box-shadow: inset 0 2px 2px rgba(0,0,0,.075), 0 0 8px rgba(233, 102, 191, 0.6);
+}
+
+#search-input{
+    width: 450px;
+    height: 45px;
+    padding: 6px 20px;
+    border-width: 2px 0px 2px 2px;
+    border-style: solid;
+    border-color: #a966e9;
+    border-radius: 27px 0px 0px 0px;
+    font-size: 100%;
+    transition: all 0.7s ease-in;
+}
+
+#search-btn{
+    background-color: #C14EBD;
+    width: 69px;
+    height: 45px;
+    padding: 15px 27px;
+    border-radius: 0px 0px 27px 0px;
+    -webkit-user-select: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#page-switcher{
+    margin: -20px 50px 0px 0px;
+    transition: all 0.2s ease-out;
+}
+
+#page-switcher-side{
+    display: none;
+}
+
+.tab{
+    position: relative;
+    top: 2px;
+    width: 120px;
+    height: 40px;
+    background: #fff;
+    border-radius: 10px 10px 0px 0px;
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #ccc;
+    box-shadow: 0 0 2px #fff inset;
+    -webkit-transform: perspective(100px) rotateX(30deg);
+    -moz-transform: perspective(100px) rotateX(30deg);
+    cursor: pointer;
+}
+
+.tab2{
+    width: 80px;
+    border-color: #bd55b4;
+    border-width: 0px 2px 0px 0px;
+    border-style: solid;
+    border-radius: 15px 0px 0px 15px;
+    cursor: pointer;
+}
+
+.tab:hover{
+    border-color: #5ea561;
+    background-color: #9de3d5;
+    z-index: 10;
+}
+
+.tab2:hover{
+    background-color: #ffdffd;
+}
+
+.tab2.active{
+    border-color: #bd55b4;
+    border-width: 2px 0px 2px 2px;
+}
+
+.tab2:first-child.active{
+    border-width: 0px 0px 2px 2px;
+}
+
+.tab2:last-child.active{
+    border-width: 2px 0px 0px 2px;
+}
+
+.tab:hover .tab-text, .tab.active .tab-text, .tab2:hover .tab-text2{
+    color: #333333;
+}
+
+.tab2.active .tab-text2{
+    color: #79056f;
+}
+
+.tab.active{
+    height: 45px;
+    border-color: #09ad76;
+    border-width: 2px 2px 0px 2px;
+    z-index: 20;
+}
+
+.tab-text{
+    font-size: 24px;
+    color: #b1b1b1;
+    -webkit-user-select: none;
+    -webkit-transform: perspective(100px) rotateX(-30deg);
+    -moz-transform: perspective(100px) rotateX(-30deg);
+}
+
+.tab-text2{
+    color: #b1b1b1;
+    -webkit-user-select: none;
+}
+
+#config{
+    padding: 14px 17px 0px 17px;
+}
+
+#config > ul > li{
+    font-size: 20px;
+    padding-left: 30px;
+}
+
+.checker[disabled]+span{
+    color: c7c7c7;
+}
+
+.npanel, .spanel{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    transition: all 0.5s ease-out;
+}
+
+.npanel.active{
+    z-index: 13;
+}
+
+.spanel.active{
+    z-index: 15;
+}
+
+#loader{
+    height: 100px;
+    background-image: linear-gradient(to right,rgba(214, 164, 164, 0.3),rgba(218, 226, 248, 0.3));
+}
+
+#loader-text{
+    color: #c14ebd;
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+#container-main{
+    position: relative;
+    border-width: 1px 0px 0px 0px;
+    border-style: solid;
+    border-color: #ffffff;
+    z-index: 15;
+    transition: all 0.5s ease-out;
+}
+
+#container-main.active{
+    border-color: #09ad76;
+}
+
+@media (max-width: 767px){
+    #page-switcher{
+        margin: -20px 10px 0px 0px;
+    }
+
+    #page-switcher-side {
+        display: flex;
+    }
+}

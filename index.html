@@ -1,0 +1,63 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+  <title>Easy Nihongo Dict | 単語をより速く調べましょう</title>
+  <link href="favico.ico" rel="shortcut icon">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="styles/main.css" rel="stylesheet">
+  <link href="styles/flex.css" rel="stylesheet">
+</head>
+<body>
+  <div id="cp-drag"></div>
+  <div class="flex-ver h-100">
+    <div class="container flex-hor align-center" id="search-bar">
+      <input type="text" id="search-input" value="" maxlength="30" autocapitalize="off" autocomplete="off" autocorrect="off" autofocus="on" spellcheck="false" placeholder='Search a Japanese word. Eg."走る"'>
+      <div id="search-btn"><i class="fa fa-search" aria-hidden="true" style="color: #fff;"></i></div>
+    </div>
+    <div id="page-switcher" class="flex-hor align-right protected hidden">
+      <div class="tab tab-jisho flex-hor align-center elem-end hidden-xs" data-toggle="jisho"><span class="tab-text elem-end">Jisho</span></div>
+      <div class="tab tab-weblio flex-hor align-center elem-end hidden-xs active" data-toggle="weblio"><span class="tab-text elem-end">Weblio</span></div>
+      <div class="tab tab-hujiang flex-hor align-center elem-end hidden-xs" data-toggle="hujiang"><span class="tab-text elem-end">沪江小D</span></div>
+      <div class="tab tab-goojisho flex-hor align-center elem-end hidden-xs" data-toggle="goojisho"><span class="tab-text elem-end">goo辞書</span></div>
+      <div class="tab tab-weblio-ruigo flex-hor align-center elem-end hidden-xs" data-toggle="weblio-ruigo"><span class="tab-text elem-end">類語</span></div>
+      <div class="btn-group pull-right" id="config">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-fw fa-cog" aria-hidden="true"></i><span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">請勾選欲使用的字典</li>
+          <li role="separator" class="divider"></li>
+          <li class="checker ckr-jisho"><input id="ckr-jisho" type="checkbox" data-toggle="jisho" checked><span> Jisho (僅限Chrome)</span></li>
+          <li class="checker ckr-weblio"><input id="ckr-weblio" type="checkbox" data-toggle="weblio" disabled checked><span> Weblio</span></li>
+          <li class="checker ckr-hujiang"><input id="ckr-hujiang" type="checkbox" data-toggle="hujiang" checked><span> 沪江小D</span></li>
+          <li class="checker ckr-goojisho"><input id="ckr-goojisho" type="checkbox" data-toggle="goojisho" checked><span> goo辞書</span></li>
+          <li class="checker ckr-weblio-ruigo"><input id="ckr-weblio-ruigo" type="checkbox" data-toggle="weblio-ruigo" checked><span> 類語</span></li>
+        </ul>
+      </div>
+    </div>
+    <div id="container-main" class="flex-hor elem-fill protected hidden">
+      <div class="flex-ver" id="page-switcher-side">
+        <div class="tab2 tab-jisho flex-hor align-center elem-fill elem-center" data-toggle="jisho"><span class="tab-text2 elem-center">Jisho</span></div>
+        <div class="tab2 tab-weblio flex-hor align-center elem-fill elem-center active" data-toggle="weblio"><span class="tab-text2 elem-center">Weblio</span></div>
+        <div class="tab2 tab-hujiang flex-hor align-center elem-fill elem-center" data-toggle="hujiang"><span class="tab-text2 elem-center">沪江小D</span></div>
+        <div class="tab2 tab-goojisho flex-hor align-center elem-fill elem-center" data-toggle="goojisho"><span class="tab-text2 elem-center">goo辞書</span></div>
+        <div class="tab2 tab-weblio-ruigo flex-hor align-center elem-fill elem-center" data-toggle="weblio-ruigo"><span class="tab-text2 elem-center">類語</span></div>
+      </div>
+      <div class="elem-fill" style="position: relative;">
+        <div class="spanel flex-ver align-center force-ver-40 protected" id="loader"><h3 class="text-center" id="loader-text"><i class="fa fa-spinner fa-pulse fa-fw"></i>&nbsp;データ読み込み中</h3></div>
+        <div id="container-jisho" class="npanel protected"></div>
+        <div id="container-weblio" class="npanel protected"></div>
+        <div id="container-hujiang" class="npanel protected"></div>
+        <div id="container-goojisho" class="npanel protected"></div>
+        <div id="container-weblio-ruigo" class="npanel protected"></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
+  <script type="text/javascript" src="scripts/js.cookie.js"></script>
+  <script type="text/javascript" src="scripts/main.js"></script>
+</body>
+</html>
