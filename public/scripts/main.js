@@ -59,7 +59,7 @@ function createFrame(frame, word){
     $("<iframe></iframe>", {
         id: frame,
         src: SITE_ADDR[frame] + word,
-        sandbox: "allow-same-origin allow-forms",
+        sandbox: "allow-forms",
         on:{ load: onLoadHandler(frame) }
     }).appendTo("#container-"+frame);
 }
@@ -107,6 +107,8 @@ function switchPanelHandler(panel){
 }
 
 function enableTabs(){
+    if(_xs_mode)
+        _site_used["hujiang"] = false;
     for(var site in _site_used){
         var val = _site_used[site];
         $('#ckr-'+site).prop("checked", val);
@@ -183,7 +185,10 @@ function searchOn(site, word){
 }
 
 function selectInput(){
-    $("#search-input")[0].select();
+    if(_xs_mode)
+        $("#search-input")[0].blur();
+    else
+        $("#search-input")[0].select();
 }
 
 function _searchAll(word){
@@ -192,6 +197,7 @@ function _searchAll(word){
             searchOn(site, word);
     }
     showLoader();
+    selectInput();
 }
 
 function searchAll(word){
@@ -233,24 +239,30 @@ function saveConfig(){
 }
 
 function validateConfig(){
-    var valid = !((_site_used === undefined) || (_tab_order === undefined));
+    var valid = !(_site_used === undefined);
     if(valid){
-        for(var site in SITE_ADDR){
-            valid &= (site in _site_used) && (site in _tab_order);
-        }
+        for(var site in SITE_ADDR)
+            valid &= site in _site_used;
         for(var key in _site_used){
             var val = _site_used[key];
             valid &= ((val === true) || (val === false));
         }
+    }
+    if(!valid)
+        _site_used = SITE_USED_INIT;
+
+    valid = !(_tab_order === undefined);
+    if(valid){
+        for(var site in SITE_ADDR)
+            valid &= site in _tab_order;
         for(var key in _tab_order){
             var val = _tab_order[key];
             valid &= Number.isInteger(val);
         }
     }
-    if(!valid){
-        _site_used = SITE_USED_INIT;
+    if(!valid)
         _tab_order = TAB_ORDER_INIT;
-    }
+
     if(!(_current_page in SITE_ADDR))
         _current_page = CURRENT_PAGE_INIT;
 }
@@ -259,9 +271,6 @@ function loadConfig(){
     _site_used = Cookies.getJSON('_site_used');
     _tab_order = Cookies.getJSON('_tab_order');
     _current_page = Cookies.get('_current_page');
-    validateConfig();
-    enableTabs();
-    repositionTabs();
 }
 
 function parseQuery(){
@@ -278,10 +287,15 @@ function parseQuery(){
     return ret;
 }
 
+function setXSState(){
+    _xs_mode = $(window).width() < 768;
+}
+
 $(function(){
+    setXSState();
     $(window).on("keydown", function(e){
         if(e.keyCode == 13)
-            checkInput();
+            $("#search-btn").trigger('click');
     });
 
     // reload pages when user click browser's BACK or FORWARD button 
@@ -320,5 +334,9 @@ $(function(){
     }).on("dragend", syncTabOrderHandler('.tab2'));
     
     loadConfig();
+    validateConfig();
+    repositionTabs();
+    switchToPanel();
+    enableTabs();
     parseQuery();
 });
