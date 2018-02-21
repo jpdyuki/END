@@ -1,22 +1,19 @@
 SITE_ADDR = { "jisho": "http://jisho.org/search?utf8=✓&keyword=",
               "weblio": "http://www.weblio.jp/content/",
-              "hujiang": "https://dict.hjenglish.com/jp/jc/",
               "goojisho": "https://dictionary.goo.ne.jp/freewordsearcher.html?mode=1&kind=jn&MT=",
               "weblio-ruigo": "http://thesaurus.weblio.jp/content/"
             };
 
 SITE_USED_INIT = { "jisho": false,
                    "weblio": true,
-                   "hujiang": true,
                    "goojisho": true,
                    "weblio-ruigo": true
                  };
 
 TAB_ORDER_INIT = { "jisho": 0,
                    "weblio": 1,
-                   "hujiang": 2,
-                   "goojisho": 3,
-                   "weblio-ruigo": 4
+                   "goojisho": 2,
+                   "weblio-ruigo": 3
                  };
 
 CURRENT_PAGE_INIT = "weblio";
@@ -107,8 +104,6 @@ function switchPanelHandler(panel){
 }
 
 function enableTabs(){
-    if(_xs_mode)
-        _site_used["hujiang"] = false;
     for(var site in _site_used){
         var val = _site_used[site];
         $('#ckr-'+site).prop("checked", val);
